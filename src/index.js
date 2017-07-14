@@ -1,9 +1,57 @@
+/** React **/
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+
+/** Firebase **/
+import firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/database';
+
+/** REDUX **/
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import createSagaMiddleware from 'redux-saga';
+import reducers from './reducers';
+import sagas from './sagas';
+
+/** Routing **/
+import createHistory from 'history/createBrowserHistory';
+import { routerReducer, routerMiddleware, } from 'react-router-redux';
+
+/** App Configuration **/
+import config from './config';
 import registerServiceWorker from './registerServiceWorker';
+
+import { setCurrentUser } from './actions';
+import App from './App';
 import './index.css';
 
+
+/** Firebase Setup **/
+window._FIREBASE_ = firebase.initializeApp(config.firebase);
+console.log('firebase is', window._FIREBASE_);
+firebase.auth().onAuthStateChanged(function(user) { store.dispatch(setCurrentUser(user)) });
+
+/** Redux Setup **/
+const history = createHistory();
+const sagaMiddleware = createSagaMiddleware();
+const middleware = [
+    sagaMiddleware,
+    routerMiddleware(history),
+];
+const store = createStore(
+    combineReducers({
+        ...reducers,
+        router: routerReducer,
+    }),
+    applyMiddleware(...middleware)
+);
+sagaMiddleware.run(sagas);
+
+const appProps = {
+    history,
+    store,
+};
+
 /** Launch the App **/
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App {...appProps}  />, document.getElementById('root'));
 registerServiceWorker();

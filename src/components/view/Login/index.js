@@ -67,14 +67,16 @@ class Login extends Component {
     }
     
     handleSubmit(e) {
-        const { emailInput, passwordInput } = this.state;
+        const { emailInput, loginType, passwordInput } = this.state;
         
-        console.log('this props', this.props);
-        
-        this.props.addUser({
-            email: emailInput.value,
-            password: passwordInput.value,
-        });
+        if(loginType === 'signup') {
+            this.props.addUser({
+                email: emailInput.value,
+                password: passwordInput.value,
+            });
+        } else {
+            console.log('handle login action');
+        }
     }
     
     setLoginType(e) {
