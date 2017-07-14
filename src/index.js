@@ -25,10 +25,8 @@ import { setCurrentUser } from './actions';
 import App from './App';
 import './index.css';
 
-
 /** Firebase Setup **/
 window._FIREBASE_ = firebase.initializeApp(config.firebase);
-console.log('firebase is', window._FIREBASE_);
 firebase.auth().onAuthStateChanged(function(user) { store.dispatch(setCurrentUser(user)) });
 
 /** Redux Setup **/

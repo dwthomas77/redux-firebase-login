@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Input from '../Common/Input';
 
 const canSubmit = (state) => {
-    console.log('the state is', state);
     const { emailInput, passwordInput } = state;
     
     return (emailInput.value && emailInput.value.length)
@@ -75,7 +74,6 @@ class Login extends Component {
                 password: passwordInput.value,
             });
         } else {
-            console.log('handle login action');
         }
     }
     

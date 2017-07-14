@@ -1,13 +1,12 @@
 /** REACT **/
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
 /** ROUTER **/
 import { Route } from 'react-router-dom';
 import { Switch } from 'react-router';
-import { ConnectedRouter, routerReducer, routerMiddleware, push } from 'react-router-redux';
+import { ConnectedRouter } from 'react-router-redux';
 /** REDUX **/
 import { Provider } from 'react-redux';
-
+/** APP **/
 import AuthorizedRoute from './components/controller/Common/Route';
 import Authorized from './components/view/Authorized';
 import Home from './components/view/Home';
@@ -18,9 +17,7 @@ import './App.css';
 
 class App extends Component {
     render() {
-        
         const { store, history } = this.props;
-        
         return (
             <Provider store={store}>
                 <ConnectedRouter history={history}>

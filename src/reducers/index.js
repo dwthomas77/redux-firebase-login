@@ -5,7 +5,6 @@ function isLoggedIn(state = false, action) {
 }
 
 function user(state = null, action) {
-    console.log(action);
     const { type } = action;
     return type === CURRENT_USER ? action.user : state;
 }
