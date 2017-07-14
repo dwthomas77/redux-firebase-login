@@ -1,24 +1,86 @@
-.App {
-  text-align: center;
+.app nav {
+  display: flex;
+  padding: 15px 5px;
+  border-bottom: 1px #CCCCCC solid;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.app .page {
+  padding: 25px;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.app ul {
+  list-style: none;
+  margin: 0;
+}
+
+.app ul li {
+  display: inline-block;
+  margin-left: 25px;
+}
+
+.app .login__form {
+  max-width: 350px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.app fieldset {
+  margin-bottom: 15px;
+  border: 0;
+}
+
+.app fieldset.--error {
+  color: red;
+}
+
+.app fieldset.--error input {
+  border: thin red solid;
+}
+
+.app fieldset label {
+  display: block;
+}
+
+.app input {
+  padding: 5px;
+  width: 100%;
+}
+
+.app .login__toggle {
+  padding: 15px 5px;
+}
+
+.app .login__toggle button {
+  padding: 5px 10px;
+  margin-right: 15px;
+  border: 2px transparent solid;
+  border-radius: 3px;
+  background-color: #EEEEEE;
+  cursor: pointer;
+}
+
+.app .login__toggle button:focus {
+  outline: none;
+}
+
+.app .login__toggle button.--active {
+  border-color: dodgerblue;
+}
+
+.app .login__submit {
+  text-align: right;
+}
+
+.app .login__submit button {
+  padding: 10px 15px;
+  border-radius: 3px;
   color: white;
+  background-color: #3F51B5;
+  border: 2px transparent solid;
+  cursor: pointer;
 }
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.app .login__submit button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
