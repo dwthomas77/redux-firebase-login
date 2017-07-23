@@ -1,7 +1,10 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 const propTypes = {
+    autoComplete: PropTypes.string,
     error: PropTypes.bool,
+    id: PropTypes.string.isRequired,
     label: PropTypes.string,
     msg: PropTypes.string,
     name: PropTypes.string.isRequired,
@@ -12,6 +15,7 @@ const propTypes = {
 };
 
 const defaultProps = {
+    autoComplete: '',
     error: false,
     label: '',
     msg: '',
@@ -24,17 +28,27 @@ const defaultProps = {
 const Input = props => {
     const {
         error,
+        id,
         label,
         msg,
         ...rest
     } = props;
     
+    const labelProps = {
+        htmlFor: id,
+    };
+    
+    const inputProps = {
+        id,
+        ...rest,
+    };
+    
     const fieldClass = error ? '--error' : '';
     
     return (
         <fieldset className={fieldClass}>
-            <label>{label}</label>
-            <input {...rest} />
+            <label {...labelProps}>{label}</label>
+            <input {...inputProps} />
             <div>{msg}</div>
         </fieldset>
     );

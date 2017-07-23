@@ -16,13 +16,17 @@ class Login extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.setLoginType = this.setLoginType.bind(this);
         const emailInput = {
+            autoComplete: 'email',
+            id: 'userEmail',
             name: 'email',
-            type: 'text',
+            type: 'email',
             value: '',
             onChange: this.handleInputChange,
             label: 'Email',
         };
         const passwordInput = {
+            autoComplete: 'password',
+            id: 'userPassword',
             name: 'password',
             type: 'text',
             value: '',
@@ -33,8 +37,8 @@ class Login extends Component {
             canSubmit: false,
             emailInput,
             passwordInput,
-            loginType: 'signup',
-            submitText: 'Signup',
+            loginType: 'login',
+            submitText: 'Login',
         };
     }
 
@@ -67,20 +71,29 @@ class Login extends Component {
     
     handleSubmit(e) {
         const { emailInput, loginType, passwordInput } = this.state;
+        const { addUser, loginUser } = this.props;
+        
+        e.preventDefault();
         
         if(loginType === 'signup') {
-            this.props.addUser({
+            addUser({
                 email: emailInput.value,
                 password: passwordInput.value,
             });
         } else {
+            loginUser({
+                email: emailInput.value,
+                password: passwordInput.value,
+            });
         }
     }
     
     setLoginType(e) {
+        const { loginType } = this.state;
+        
         this.setState({
-            loginType: e.target.name,
-            submitText: e.target.name === 'signup' ? 'Signup' : 'Login',
+            loginType: loginType === 'signup' ? 'login' : 'signup',
+            submitText: loginType === 'signup' ? 'Login' : 'Signup',
         });
     }
     
@@ -89,23 +102,22 @@ class Login extends Component {
         const { canSubmit, emailInput, loginType, passwordInput, submitText } = this.state;
         const msg = isLoggedIn ? 'Logged In' : 'Not Logged In';
         
-        const signupButton = {
-            className: loginType === 'signup' ? '--active' : '',
-            name: 'signup',
-            onClick: this.setLoginType,
-        };
-
-        const loginButton = {
-            className: loginType !== 'signup' ? '--active' : '',
-            name: 'login',
-            onClick: this.setLoginType,
-        };
-        
         const submitButton = {
             className: 'login__submit-btn',
             disabled: !canSubmit,
             onClick: this.handleSubmit,
         };
+
+        let loginPrompt;
+        let registerPrompt;
+        
+        if (loginType === 'signup') {
+            loginPrompt = <span className="login__link" onClick={this.setLoginType}>Login</span>;
+            registerPrompt = <h2>New User Signup</h2>;
+        } else {
+            registerPrompt = <span className="login__link" onClick={this.setLoginType}>New User Signup</span>;
+            loginPrompt = <h2>Login</h2>;
+        }
         
         return (
             <div className="page">
@@ -113,19 +125,25 @@ class Login extends Component {
                 <p>Status: {msg}</p>
                 
                 <div className="login__toggle">
-
-                    <button {...signupButton}>New User Signup</button>
-                    <button {...loginButton}>Existing User Login</button>
-                    
+                    {loginPrompt}
+                    {registerPrompt}
                 </div>
                 
                 <div className="login__form">
+
+                    <form className="login__form-fields">
+                        <Input {...emailInput} />
+                        <Input {...passwordInput} />
+                        
+                        <div className="login__submit">
+                            <button {...submitButton}>{submitText}</button>
+                        </div>
+                    </form>
                     
-                    <Input {...emailInput} />
-                    <Input {...passwordInput} />
-                    
-                    <div className="login__submit">
-                        <button {...submitButton}>{submitText}</button>
+                    <div className="login__actions">
+
+                        <span>Forgot your password?</span>
+
                     </div>
 
                 </div>

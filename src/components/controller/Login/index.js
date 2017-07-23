@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addUser } from '../../../actions';
+import { addUser, loginUser } from '../../../actions';
 import Login from '../../view/Login';
 
 const mapStateToProps = (state) => {
@@ -11,6 +11,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = ({
     addUser,
+    loginUser,
 });
 
 const LoginController = connect(

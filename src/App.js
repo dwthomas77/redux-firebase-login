@@ -11,7 +11,7 @@ import AuthorizedRoute from './components/controller/Common/Route';
 import Authorized from './components/view/Authorized';
 import Home from './components/view/Home';
 import Login from './components/controller/Login';
-import Navigation from './components/view/Common/Navigation';
+import Navigation from './components/controller/Common/Navigation';
 import './App.css';
 
 

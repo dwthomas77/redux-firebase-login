@@ -8,7 +8,7 @@ import 'firebase/auth';
 import 'firebase/database';
 
 /** REDUX **/
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import reducers from './reducers';
 import sagas from './sagas';
@@ -36,13 +36,16 @@ const middleware = [
     sagaMiddleware,
     routerMiddleware(history),
 ];
+
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     combineReducers({
         ...reducers,
         router: routerReducer,
     }),
-    applyMiddleware(...middleware)
+    composeEnhancers(applyMiddleware(...middleware)),
 );
+
 sagaMiddleware.run(sagas);
 
 const appProps = {
