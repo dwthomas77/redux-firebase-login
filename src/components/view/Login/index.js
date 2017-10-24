@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import Input from '../Common/Input';
 
 const canSubmit = (state) => {
@@ -142,7 +143,7 @@ class Login extends Component {
                     
                     <div className="login__actions">
 
-                        <span>Forgot your password?</span>
+                        <span><Link to="/reset-password">Reset your Password</Link></span>
 
                     </div>
 

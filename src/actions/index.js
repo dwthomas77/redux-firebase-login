@@ -3,6 +3,7 @@ import {
     CURRENT_USER,
     LOGOUT_USER,
     LOGIN_USER,
+    PASSWORD_RESET,
 } from '../constants';
 
 export function addUser({ email, password }) {
@@ -31,5 +32,12 @@ export function setCurrentUser(user) {
     return {
         type: CURRENT_USER,
         user
+    };
+}
+
+export function resetPassword({email}) {
+    return {
+        type: PASSWORD_RESET,
+        email
     };
 }

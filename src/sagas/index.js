@@ -3,6 +3,7 @@ import {
     ADD_USER,
     LOGOUT_USER,
     LOGIN_USER,
+    PASSWORD_RESET,
 } from '../constants';
 
 function* addUser({ email, password }) {
@@ -33,8 +34,17 @@ function* logoutUser() {
     firebase.auth().signOut().catch(error => { console.log('signout Error', error) });
 }
 
+function* passwordReset({ email }){
+    
+    console.log('requested to reset', email);
+    
+    const firebase = window._FIREBASE_;
+    firebase.auth().sendPasswordResetEmail(email).catch(error => { console.log('reset Error', error) });
+}
+
 export default function* sagaRoot() {
     yield takeEvery(ADD_USER, addUser);
     yield takeEvery(LOGOUT_USER, logoutUser);
     yield takeEvery(LOGIN_USER, loginUser);
+    yield takeEvery(PASSWORD_RESET, passwordReset);
 }
