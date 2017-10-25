@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
-import { resetPassword } from '../../../../actions';
-import PasswordReset from '../../../view/Login/PasswordReset';
+import { resetPassword } from 'actions';
+import PasswordReset from 'components/PasswordReset';
 
 const mapDispatchToProps = ({
     resetPassword,

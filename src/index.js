@@ -21,13 +21,13 @@ import { routerReducer, routerMiddleware, } from 'react-router-redux';
 import config from './config';
 import registerServiceWorker from './registerServiceWorker';
 
-import { setCurrentUser } from './actions';
+import { setUser } from './actions';
 import App from './App';
 import './index.css';
 
 /** Firebase Setup **/
 window._FIREBASE_ = firebase.initializeApp(config.firebase);
-firebase.auth().onAuthStateChanged(function(user) { store.dispatch(setCurrentUser(user)) });
+firebase.auth().onAuthStateChanged(function(user) { store.dispatch(setUser(user)) });
 
 /** Redux Setup **/
 const history = createHistory();

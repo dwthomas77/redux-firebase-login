@@ -1,14 +1,19 @@
-import { 
-    ADD_USER,
-    CURRENT_USER,
-    LOGOUT_USER,
+import {
+    /** USER **/
+    REGISTER_USER,
     LOGIN_USER,
+    LOGOUT_USER,
+    SET_USER,
     PASSWORD_RESET,
+    PASSWORD_CHANGE,
+    /** ERRORS **/
+    SET_ERROR,
+    RESET_ERRORS,
 } from '../constants';
 
-export function addUser({ email, password }) {
+export function registerUser({ email, password }) {
     return {
-        type: ADD_USER,
+        type: REGISTER_USER,
         email,
         password,
     };
@@ -28,10 +33,17 @@ export function logoutUser() {
     };
 }
 
-export function setCurrentUser(user) {
+export function setUser(user) {    
     return {
-        type: CURRENT_USER,
+        type: SET_USER,
         user
+    };
+}
+
+export function changePassword({password}) {
+    return {
+        type: PASSWORD_CHANGE,
+        password
     };
 }
 

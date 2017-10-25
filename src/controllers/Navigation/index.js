@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import { logoutUser } from '../../../../actions';
-import Navigation from '../../../view/Common/Navigation';
+import { logoutUser } from 'actions';
+import Navigation from 'components/Navigation';
 
 const mapStateToProps = (state) => {
-
+    console.log('state.user', state.user);
     return {
         user: state.user
     };

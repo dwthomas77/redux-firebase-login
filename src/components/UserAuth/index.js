@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import Input from '../Common/Input';
+import Input from 'components/Input';
 
 const canSubmit = (state) => {
     const { emailInput, passwordInput } = state;
@@ -9,7 +9,7 @@ const canSubmit = (state) => {
         && (passwordInput.value && passwordInput.value.length);
 };
 
-class Login extends Component {
+class UserAuth extends Component {
     
     constructor(props) {
         super(props);
@@ -72,12 +72,12 @@ class Login extends Component {
     
     handleSubmit(e) {
         const { emailInput, loginType, passwordInput } = this.state;
-        const { addUser, loginUser } = this.props;
+        const { registerUser, loginUser } = this.props;
         
         e.preventDefault();
         
         if(loginType === 'signup') {
-            addUser({
+            registerUser({
                 email: emailInput.value,
                 password: passwordInput.value,
             });
@@ -155,4 +155,4 @@ class Login extends Component {
 
 }
 
-export default Login;
+export default UserAuth;

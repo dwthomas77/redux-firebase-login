@@ -7,12 +7,13 @@ import { ConnectedRouter } from 'react-router-redux';
 /** REDUX **/
 import { Provider } from 'react-redux';
 /** APP **/
-import AuthorizedRoute from './components/controller/Common/Route';
-import Authorized from './components/view/Authorized';
-import Home from './components/view/Home';
-import Login from './components/controller/Login';
-import PasswordReset from './components/controller/Login/PasswordReset';
-import Navigation from './components/controller/Common/Navigation';
+import AuthorizedRoute from 'controllers/Route';
+import Authorized from 'components/Authorized';
+import Home from 'components/Home';
+import UserAuth from 'controllers/UserAuth';
+import PasswordReset from 'controllers/PasswordReset';
+import PasswordChange from 'controllers/PasswordChange';
+import Navigation from 'controllers/Navigation';
 import './App.css';
 
 
@@ -26,7 +27,9 @@ class App extends Component {
                         <Navigation />
                         <Switch>
                             <Route exact path="/" component={Home} />
-                            <Route path="/login" component={Login} />
+                            <Route path="/user/" component={UserAuth} />
+                            <Route path="/user/change" component={PasswordChange} />
+                            <Route path="/user/reset" component={PasswordReset} />
                             <AuthorizedRoute path="/authorized" component={Authorized} />
                             <Route path="/reset-password" component={PasswordReset} />
                         </Switch>

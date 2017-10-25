@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from '../../Common/Input';
+import Input from 'components/Input';
 
 const canSubmit = (state) => {
     const { emailInput } = state;
@@ -7,7 +7,7 @@ const canSubmit = (state) => {
     return (emailInput.value && emailInput.value.length);
 };
 
-class PasswordReset extends Component {
+class PasswordChange extends Component {
 
     constructor(props) {
         super(props);
@@ -109,4 +109,4 @@ class PasswordReset extends Component {
 
 }
 
-export default PasswordReset;
+export default PasswordChange;
