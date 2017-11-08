@@ -3,20 +3,20 @@ import {
 } from 'constants.js';
 
 const defaultUser = {
-    name: '',
+    email: '',
     uid: null,
 };
 
 function user(state = defaultUser, action) {
-    const { type, ...rest } = action;
+    const { type, user } = action;
 
     if (type === SET_USER) {
-        return {
-            ...rest,
-        };
+        return {...user};
     } else {
         return state;
     }
 }
+
+console.log('user is', user);
 
 export default user;

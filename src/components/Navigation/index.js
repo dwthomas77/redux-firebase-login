@@ -5,7 +5,7 @@ const Navigation = (props) => {
     
     const { user, logoutUser } = props;
     
-    const userMsg = user ? `Logged in as ${user.email}` : '';
+    const userMsg = !!user.uid ? `Logged in as ${user.email}` : '';
     
     return (
         <nav>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Input from 'components/Input';
+import './styles.css';
 
 const canSubmit = (state) => {
     const { emailInput, passwordInput } = state;
@@ -29,7 +30,7 @@ class UserAuth extends Component {
             autoComplete: 'password',
             id: 'userPassword',
             name: 'password',
-            type: 'text',
+            type: 'password',
             value: '',
             onChange: this.handleInputChange,
             label: 'Password',
@@ -46,13 +47,21 @@ class UserAuth extends Component {
     handleInputChange(e) {
         const { name, value } = e.target;
         const inputName = `${name}Input`;
-        const isValid = !!(value && value.length);
+        const isEmail = inputName.indexOf('email') !== -1;
+        let isValid = !!(value && value.length);
+        
+        if (isValid && isEmail) {
+            const emailValidation = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            isValid = emailValidation.test(value);
+        }
+        
+        const validMsg = isEmail ? 'Enter a valid email address' : 'This field is required';
         
         const updatedInput = {
             ...this.state[inputName],
             value,
             error: !isValid,
-            msg: !isValid ? 'Required Field' : '',
+            msg: !isValid ? validMsg : '',
         };
         
         const { emailInput, passwordInput } = this.state;
@@ -99,9 +108,8 @@ class UserAuth extends Component {
     }
     
     render() {
-        const { isLoggedIn } = this.props;
+        const { user } = this.props;
         const { canSubmit, emailInput, loginType, passwordInput, submitText } = this.state;
-        const msg = isLoggedIn ? 'Logged In' : 'Not Logged In';
         
         const submitButton = {
             className: 'login__submit-btn',
@@ -122,10 +130,9 @@ class UserAuth extends Component {
         
         return (
             <div className="page">
-                <h2>Login Page</h2>
-                <p>Status: {msg}</p>
+                <h2 className="login-title userAuth-title">Login or Register your account</h2>
                 
-                <div className="login__toggle">
+                <div className="login__toggle userAuth-type">
                     {loginPrompt}
                     {registerPrompt}
                 </div>

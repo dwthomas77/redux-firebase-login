@@ -27,7 +27,15 @@ import './index.css';
 
 /** Firebase Setup **/
 window._FIREBASE_ = firebase.initializeApp(config.firebase);
-firebase.auth().onAuthStateChanged(function(user) { store.dispatch(setUser(user)) });
+firebase.auth().onAuthStateChanged((user) => {
+    if(user && user.uid) {
+        const userData = {
+            uid: user.uid,
+            email: user.email,
+        };
+        store.dispatch(setUser(userData));
+    }
+});
 
 /** Redux Setup **/
 const history = createHistory();

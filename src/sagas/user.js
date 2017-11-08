@@ -8,7 +8,11 @@ import {
 
 function* registerUser({ email, password }) {
     const firebase = window._FIREBASE_;
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then( (user) => {
+            console.log('this is the user', user);
+        })
+        .catch(function(error) {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(error.code);
@@ -30,8 +34,11 @@ function* loginUser({ email, password }) {
 }
 
 function* logoutUser() {
+    console.log('logging the user out');
     const firebase = window._FIREBASE_;
-    firebase.auth().signOut().catch(error => { console.log('signout Error', error) });
+    firebase.auth().signOut()
+        .then( (x) => console.log('any data?', x) )
+        .catch(error => { console.log('signout Error', error) });
 }
 
 function* passwordReset({ email }){

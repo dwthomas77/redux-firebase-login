@@ -4,9 +4,9 @@ import {
     Redirect,
 } from 'react-router-dom';
 
-const AuthorizedRoute = ({ isLoggedIn, component: Component, ...rest }) => (
+const AuthorizedRoute = ({ user: { uid }, component: Component, ...rest }) => (
     <Route {...rest} render={props => (
-        isLoggedIn ? (
+        !!uid ? (
                 <Component {...props}/>
             ) : (
                 <Redirect to={{
