@@ -116,6 +116,11 @@ class UserAuth extends Component {
             disabled: !canSubmit,
             onClick: this.handleSubmit,
         };
+        
+        if (user.uid) {
+            emailInput.disabled = true;
+            passwordInput.disabled = true;
+        }
 
         let loginPrompt;
         let registerPrompt;
@@ -128,9 +133,11 @@ class UserAuth extends Component {
             loginPrompt = <h2>Login</h2>;
         }
         
+        const headingText = !user.uid ? 'Login or Register your account' : 'User Account Page';
+        
         return (
             <div className="page">
-                <h2 className="login-title user-auth__title">Login or Register your account</h2>
+                <h2 className="login-title user-auth__title">{headingText}</h2>
                 
                 <div className="login__toggle user-auth__type">
                     {loginPrompt}

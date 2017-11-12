@@ -38,6 +38,7 @@ function* loginUser({ email, password }) {
 function* logoutUser() {
     try {
         yield call(api('logoutUser'));
+        window.location = '/user';
     } catch (error) {
         console.log(`Error logging out: ${error}`);
     }
