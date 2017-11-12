@@ -3,7 +3,6 @@ import { logoutUser } from 'actions';
 import Navigation from 'components/Navigation';
 
 const mapStateToProps = (state) => {
-    console.log('state.user', state.user);
     return {
         user: state.user
     };

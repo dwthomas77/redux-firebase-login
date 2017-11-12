@@ -34,6 +34,8 @@ firebase.auth().onAuthStateChanged((user) => {
             email: user.email,
         };
         store.dispatch(setUser(userData));
+    } else {
+        store.dispatch(setUser(null));
     }
 });
 

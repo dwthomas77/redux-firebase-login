@@ -53,3 +53,12 @@ export function resetPassword({email}) {
         email
     };
 }
+
+export function setError({key=null, msg=''}) {
+    return {
+        type: SET_ERROR,
+        error: { key, msg },
+    }
+}
+
+export function resetErrors() { return { type: RESET_ERRORS }; }

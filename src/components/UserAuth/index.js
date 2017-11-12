@@ -108,7 +108,7 @@ class UserAuth extends Component {
     }
     
     render() {
-        const { user } = this.props;
+        const { errors, user } = this.props;
         const { canSubmit, emailInput, loginType, passwordInput, submitText } = this.state;
         
         const submitButton = {
@@ -130,16 +130,17 @@ class UserAuth extends Component {
         
         return (
             <div className="page">
-                <h2 className="login-title userAuth-title">Login or Register your account</h2>
+                <h2 className="login-title user-auth__title">Login or Register your account</h2>
                 
-                <div className="login__toggle userAuth-type">
+                <div className="login__toggle user-auth__type">
                     {loginPrompt}
                     {registerPrompt}
                 </div>
                 
                 <div className="login__form">
-
+                    
                     <form className="login__form-fields">
+                        {!!errors.length && <div className="user-auth__error">{errors.toString()}</div>}
                         <Input {...emailInput} />
                         <Input {...passwordInput} />
                         

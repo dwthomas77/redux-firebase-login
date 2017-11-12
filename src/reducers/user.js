@@ -17,6 +17,4 @@ function user(state = defaultUser, action) {
     }
 }
 
-console.log('user is', user);
-
 export default user;

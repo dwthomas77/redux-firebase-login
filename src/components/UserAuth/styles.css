@@ -1,7 +1,14 @@
-.userAuth-title {
+.user-auth__title {
     margin-bottom: 25px;
 }
 
-.userAuth-type {
+.user-auth__type {
     color: #3F51B5;
+}
+
+.user-auth__error {
+    color: red;
+    margin-bottom: 17px;
+    text-transform: uppercase;
+    font-weight: bold;
 }

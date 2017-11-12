@@ -14,6 +14,7 @@ import UserAuth from 'controllers/UserAuth';
 import PasswordReset from 'controllers/PasswordReset';
 import PasswordChange from 'controllers/PasswordChange';
 import Navigation from 'controllers/Navigation';
+import 'normalize.css';
 import './App.css';
 
 
